@@ -520,7 +520,16 @@
                 <a href="https://github.com/Diyart49" target="_blank" class="social-icon">၌<i class="fa-brands fa-github"></i></a>
 
             </div>
-
+            <div id="post-view" style="display: none; min-height: 100vh; padding: 6rem 3rem; background: #0a192f;">
+                <div class="container">
+                    <button onclick="showHome()" style="padding: 0.75rem 1.5rem; background: #64ffda; color: #0a192f; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 2rem; font-size: 1rem;">← Back to Blog</button>
+                    <div style="background: rgba(17, 34, 64, 0.5); border: 1px solid rgba(100, 255, 218, 0.1); border-radius: 10px; padding: 3rem;">
+                    <h1 id="post-title" style="color: #ccd6f6; font-size: 2.5rem; margin-bottom: 1rem;"></h1>
+                    <div id="post-meta" style="color: #64ffda; margin-bottom: 2rem;"></div>
+                    <div id="post-content" style="color: #8892b0; font-size: 1.1rem; line-height: 1.8;"></div>
+                </div>
+             </div>
+            </div>
             <div class="cta-buttons">
                 <a href="#blog" class="btn btn-primary">View My Blog</a>
                 <a href="#contact" class="btn">Get In Touch</a>
@@ -579,7 +588,7 @@
         <div class="container">
             <h2 class="section-title">Latest Blog Posts</h2>
             <div class="blog-grid">
-                <div class="blog-card">
+                <div class="blog-card"> onclick="showPost(1)">
                     <h3>My First Week at IIT Delhi</h3>
                     <p>Documenting my initial experiences, the setup process, and what I've learned in my first week of internship at IIT Delhi.</p>
                     <div class="blog-meta">
@@ -592,7 +601,7 @@
                     </div>
                 </div>
 
-                <div class="blog-card">
+                <div class="blog-card"> onclick="showPost(2)">
                     <h3>Building a REST API with Node.js</h3>
                     <p>A step-by-step guide on how I built my first REST API using Node.js and Express, including authentication and database integration.</p>
                     <div class="blog-meta">
@@ -605,7 +614,7 @@
                     </div>
                 </div>
 
-                <div class="blog-card">
+                <div class="blog-card"> onclick="showPost(3)">
                     <h3>Understanding React Hooks</h3>
                     <p>My learning notes on React Hooks - useState, useEffect, and custom hooks with practical examples from my projects.</p>
                     <div class="blog-meta">
@@ -618,7 +627,7 @@
                     </div>
                 </div>
 
-                <div class="blog-card">
+                <div class="blog-card"> onclick="showPost(4)">
                     <h3>DSA: Binary Search Implementation</h3>
                     <p>Breaking down the binary search algorithm with code examples and time complexity analysis for placement preparation.</p>
                     <div class="blog-meta">
