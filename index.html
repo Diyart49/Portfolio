@@ -147,6 +147,26 @@
             margin-bottom: 100px;
         }
 
+        /* About Section */
+        .about-content {
+            font-size: 14px;
+            color: #8892b0;
+            line-height: 1.8;
+            max-width: 800px;
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
+            animation-delay: 0.1s;
+        }
+
+        .about-content p {
+            margin-bottom: 16px;
+        }
+
+        .about-content a {
+            color: #64ffda;
+            border-bottom: 1px dotted #64ffda;
+        }
+
         /* Experience Section */
         .exp-item {
             display: grid;
@@ -253,6 +273,48 @@
             font-size: 40px;
             display: flex;
             align-items: center;
+        }
+
+        .project-timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            min-height: 200px;
+        }
+
+        .timeline-header {
+            font-size: 12px;
+            color: #64ffda;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-align: center;
+            text-transform: uppercase;
+            min-width: 150px;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #64ffda;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.1);
+        }
+
+        .project-item .project-timeline::after {
+            content: '';
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #64ffda 0%, transparent 100%);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+        }
+
+        .project-item {
+            position: relative;
         }
 
         .project-content h3 {
@@ -484,6 +546,13 @@
                 gap: 16px;
             }
 
+            .project-timeline {
+                flex-direction: row;
+                min-height: auto;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+
             .writing-item {
                 grid-template-columns: 1fr;
                 gap: 16px;
@@ -496,6 +565,7 @@
         }
 
         /* Hide animations on initial page load */
+        .about-content.visible,
         .exp-item.visible,
         .project-item.visible,
         .writing-item.visible {
@@ -516,6 +586,7 @@
             </div>
             <nav>
                 <ul>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#writing">Writing</a></li>
@@ -539,6 +610,21 @@
 
     <!-- Scrollable Main Content -->
     <main>
+        <!-- About Section -->
+        <section id="about">
+            <div class="about-content">
+                <p>
+                    I'm a Machine Learning researcher with a strong focus on healthcare AI, currently contributing to an ICMR-funded research project at <a href="https://www.iitd.ac.in/" target="_blank">IIT Delhi</a> in collaboration with <a href="https://www.aiims.edu/" target="_blank">AIIMS Delhi</a>. My work centers around lung nodule detection and sarcoma metastasis classification using radiomics, advanced ML models, and explainability techniques like SHAP.
+                </p>
+                <p>
+                    With hands-on experience in building end-to-end ML pipelines, I specialize in data preprocessing, feature engineering, SMOTE for imbalance handling, cross-validation, hyperparameter tuning, and model optimization. I work extensively with classification models including Random Forest, Decision Trees, and other ensemble methods, ensuring both performance and interpretability in high-stakes medical applications.
+                </p>
+                <p>
+                    Beyond research, I have authored research papers, built healthcare-focused applications like CardioCare, and actively contributed to leadership roles at university. My interests lie in AI research, data science, and building scalable ML systems for real-world impact.
+                </p>
+            </div>
+        </section>
+
         <!-- Experience Section -->
         <section id="experience">
             <div class="exp-item">
@@ -565,7 +651,10 @@
         <!-- Projects Section -->
         <section id="projects">
             <div class="project-item">
-                <div class="project-emoji">🫀</div>
+                <div class="project-timeline">
+                    <div class="timeline-header">Oct 2023 — May 2024</div>
+                    <div class="timeline-dot"></div>
+                </div>
                 <div class="project-content">
                     <h3>CardioCare – Heart Health Prediction</h3>
                     <p>
@@ -584,7 +673,10 @@
             </div>
 
             <div class="project-item">
-                <div class="project-emoji">📊</div>
+                <div class="project-timeline">
+                    <div class="timeline-header">Aug 2024 — Jan 2025</div>
+                    <div class="timeline-dot"></div>
+                </div>
                 <div class="project-content">
                     <h3>Prediabetes Prediction ML Model</h3>
                     <p>
@@ -595,23 +687,6 @@
                         <span>Random Forest</span>
                         <span>Logistic Regression</span>
                         <span>Data Analysis</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-item">
-                <div class="project-emoji">🫁</div>
-                <div class="project-content">
-                    <h3>Lung Nodule Detection & Sarcoma Classification</h3>
-                    <p>
-                        ICMR-funded research collaboration between IIT Delhi and AIIMS Delhi. Developing advanced radiomics-based classification pipelines with explainability analysis.
-                    </p>
-                    <div class="project-tech">
-                        <span>Radiomics</span>
-                        <span>SHAP</span>
-                        <span>Python</span>
-                        <span>Scikit-learn</span>
-                        <span>Feature Engineering</span>
                     </div>
                 </div>
             </div>
@@ -663,7 +738,7 @@
         });
 
         // Observe all items that should animate on scroll
-        document.querySelectorAll('.exp-item, .project-item, .writing-item').forEach(item => {
+        document.querySelectorAll('.about-content, .exp-item, .project-item, .writing-item').forEach(item => {
             observer.observe(item);
         });
 
