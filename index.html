@@ -21,11 +21,8 @@
             color: #8892b0;
             line-height: 1.6;
             font-size: 16px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
+            display: flex;
             min-height: 100vh;
-            gap: 60px;
-            padding: 60px;
         }
 
         a {
@@ -39,34 +36,40 @@
             text-decoration: underline;
         }
 
-        /* Sidebar */
+        /* Fixed Sidebar */
         .sidebar {
             position: fixed;
-            left: 60px;
-            top: 60px;
+            left: 0;
+            top: 0;
             width: 300px;
-            height: calc(100vh - 120px);
+            height: 100vh;
+            padding: 60px;
+            overflow-y: auto;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background-color: #0a0e27;
+            z-index: 10;
         }
 
         .sidebar-top h1 {
-            font-size: 48px;
+            font-size: 44px;
             font-weight: 700;
             color: #cffafe;
             line-height: 1.2;
             margin-bottom: 16px;
+            letter-spacing: -1px;
         }
 
         .sidebar-top .role {
-            font-size: 20px;
+            font-size: 18px;
             color: #8892b0;
             margin-bottom: 32px;
+            font-weight: 500;
         }
 
         .sidebar-top .description {
-            font-size: 15px;
+            font-size: 14px;
             color: #8892b0;
             line-height: 1.8;
             margin-bottom: 60px;
@@ -74,7 +77,6 @@
 
         nav ul {
             list-style: none;
-            margin-bottom: 60px;
         }
 
         nav li {
@@ -82,7 +84,7 @@
         }
 
         nav a {
-            font-size: 12px;
+            font-size: 11px;
             color: #8892b0;
             font-weight: 600;
             letter-spacing: 0.5px;
@@ -91,6 +93,7 @@
             align-items: center;
             gap: 12px;
             position: relative;
+            transition: color 0.3s ease;
         }
 
         nav a:hover {
@@ -124,6 +127,7 @@
             align-items: center;
             justify-content: center;
             color: #8892b0;
+            transition: color 0.3s ease;
         }
 
         .sidebar-bottom a:hover {
@@ -131,15 +135,16 @@
             text-decoration: none;
         }
 
-        /* Main Content */
+        /* Scrollable Main Content */
         main {
-            grid-column: 2;
-            padding-right: 100px;
-            padding-bottom: 100px;
+            margin-left: 300px;
+            width: calc(100% - 300px);
+            padding: 100px 100px 100px 60px;
+            overflow-y: auto;
         }
 
         section {
-            margin-bottom: 120px;
+            margin-bottom: 100px;
         }
 
         /* Experience Section */
@@ -147,8 +152,22 @@
             display: grid;
             grid-template-columns: 150px 1fr;
             gap: 40px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             align-items: flex-start;
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .exp-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .exp-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .exp-item:nth-child(3) {
+            animation-delay: 0.3s;
         }
 
         .exp-date {
@@ -156,10 +175,11 @@
             color: #8892b0;
             font-weight: 600;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .exp-content h3 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #cffafe;
             margin-bottom: 8px;
@@ -171,9 +191,9 @@
         }
 
         .exp-role {
-            font-size: 16px;
+            font-size: 15px;
             color: #64ffda;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .exp-sub-role {
@@ -184,7 +204,7 @@
 
         .exp-description {
             color: #8892b0;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.8;
             margin-bottom: 16px;
         }
@@ -192,12 +212,12 @@
         .exp-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             margin-top: 16px;
         }
 
         .tech-tag {
-            font-size: 12px;
+            font-size: 11px;
             color: #64ffda;
             background: rgba(100, 255, 218, 0.1);
             padding: 6px 12px;
@@ -211,16 +231,32 @@
             display: grid;
             grid-template-columns: 150px 1fr;
             gap: 40px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             align-items: flex-start;
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .project-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .project-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project-item:nth-child(3) {
+            animation-delay: 0.3s;
         }
 
         .project-emoji {
-            font-size: 48px;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
         }
 
         .project-content h3 {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #cffafe;
             margin-bottom: 12px;
@@ -228,34 +264,47 @@
 
         .project-content p {
             color: #8892b0;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.8;
             margin-bottom: 16px;
         }
 
         .project-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 16px;
         }
 
         .project-links a {
-            font-size: 12px;
+            font-size: 11px;
             color: #64ffda;
             font-weight: 600;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .project-links a::before {
+            content: '↗';
+            font-size: 12px;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .project-tech span {
-            font-size: 12px;
+            font-size: 11px;
             color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            font-weight: 500;
         }
 
         /* Writing Section */
@@ -263,20 +312,24 @@
             display: grid;
             grid-template-columns: 150px 1fr;
             gap: 40px;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
             align-items: flex-start;
-            padding-bottom: 40px;
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            opacity: 0;
+            animation: slideInUp 0.6s ease-out forwards;
         }
 
-        .writing-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .writing-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .writing-item:nth-child(2) {
+            animation-delay: 0.2s;
         }
 
         .writing-emoji {
-            font-size: 48px;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
         }
 
         .writing-date {
@@ -284,6 +337,7 @@
             color: #64ffda;
             font-weight: 600;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
             margin-bottom: 8px;
         }
 
@@ -294,9 +348,14 @@
             margin-bottom: 8px;
         }
 
+        .writing-content a {
+            color: #cffafe;
+            border-bottom: 1px dotted #64ffda;
+        }
+
         .writing-content p {
             color: #8892b0;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.8;
         }
 
@@ -306,6 +365,7 @@
             font-size: 12px;
             border-top: 1px solid rgba(100, 255, 218, 0.1);
             padding-top: 40px;
+            margin-top: 80px;
             line-height: 1.8;
         }
 
@@ -317,50 +377,72 @@
             margin-bottom: 8px;
         }
 
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             body {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 40px;
+                flex-direction: column;
             }
 
             .sidebar {
                 position: relative;
-                left: 0;
-                top: 0;
                 width: 100%;
                 height: auto;
+                padding: 40px;
                 flex-direction: row;
                 justify-content: flex-start;
                 gap: 40px;
                 border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-                padding-bottom: 40px;
-                margin-bottom: 40px;
+                margin-bottom: 0;
+                align-items: flex-start;
+            }
+
+            main {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px;
             }
 
             .sidebar-top h1 {
                 font-size: 36px;
             }
 
-            main {
-                grid-column: 1;
-                padding-right: 0;
+            nav ul {
+                display: flex;
+                gap: 30px;
+                margin-bottom: 0;
+            }
+
+            nav li {
+                margin-bottom: 0;
+            }
+
+            .sidebar-bottom {
+                position: absolute;
+                right: 40px;
+                top: 40px;
             }
         }
 
         @media (max-width: 768px) {
-            body {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 30px 20px;
-            }
-
             .sidebar {
                 flex-direction: column;
-                gap: 0;
-                padding-bottom: 30px;
-                margin-bottom: 30px;
+                gap: 20px;
+                padding: 30px 20px;
+                position: relative;
+                margin-bottom: 0;
+                width: 100%;
             }
 
             .sidebar-top h1 {
@@ -374,26 +456,22 @@
             }
 
             .sidebar-top .description {
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
 
             nav ul {
-                display: flex;
-                gap: 20px;
                 flex-wrap: wrap;
-                margin-bottom: 30px;
+                gap: 20px;
             }
 
-            nav li {
-                margin-bottom: 0;
+            .sidebar-bottom {
+                position: relative;
+                right: auto;
+                top: auto;
             }
 
-            nav a {
-                font-size: 11px;
-            }
-
-            nav a::before {
-                display: none;
+            main {
+                padding: 30px 20px;
             }
 
             .exp-item {
@@ -401,17 +479,9 @@
                 gap: 16px;
             }
 
-            .exp-date {
-                margin-bottom: 8px;
-            }
-
             .project-item {
                 grid-template-columns: 1fr;
                 gap: 16px;
-            }
-
-            .project-emoji {
-                font-size: 36px;
             }
 
             .writing-item {
@@ -419,21 +489,31 @@
                 gap: 16px;
             }
 
+            .project-emoji,
             .writing-emoji {
-                font-size: 36px;
+                font-size: 32px;
             }
+        }
+
+        /* Hide animations on initial page load */
+        .exp-item.visible,
+        .project-item.visible,
+        .writing-item.visible {
+            animation: slideInUp 0.6s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
+    <!-- Fixed Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-top">
-            <h1>Diya Rastogi</h1>
-            <div class="role">Machine Learning Researcher</div>
-            <p class="description">
-                I build AI systems for healthcare and medicine. Currently at IIT Delhi, working on radiomics and explainable ML.
-            </p>
+            <div>
+                <h1>Diya Rastogi</h1>
+                <div class="role">Machine Learning Researcher</div>
+                <p class="description">
+                    I build AI systems for healthcare. Currently at IIT Delhi, working on radiomics and explainable ML.
+                </p>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#experience">Experience</a></li>
@@ -457,7 +537,7 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- Scrollable Main Content -->
     <main>
         <!-- Experience Section -->
         <section id="experience">
@@ -487,7 +567,7 @@
             <div class="project-item">
                 <div class="project-emoji">🫀</div>
                 <div class="project-content">
-                    <h3>CardioCare – Heart Health Prediction App</h3>
+                    <h3>CardioCare – Heart Health Prediction</h3>
                     <p>
                         Developed a machine learning-based application to predict heart disease risk based on clinical parameters. Focused on model optimization and user-friendly deployment using Streamlit.
                     </p>
@@ -570,6 +650,24 @@
     </main>
 
     <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        // Observe all items that should animate on scroll
+        document.querySelectorAll('.exp-item, .project-item, .writing-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
