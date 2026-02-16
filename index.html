@@ -35,6 +35,18 @@
             color: #ffffff;
             text-decoration: underline;
         }
+        /* Custom Cursor Spotlight */
+        .cursor-spotlight {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+        }
 
         /* Fixed Sidebar */
         .sidebar {
@@ -411,6 +423,7 @@
         footer p {
             margin-bottom: 8px;
         }
+        
 
         /* Animations */
         @keyframes slideInUp {
@@ -542,8 +555,11 @@
     </style>
 </head>
 <body>
+    <div class="cursor-spotlight"></div>
+    
     <!-- Fixed Sidebar -->
     <aside class="sidebar">
+        
         <div class="sidebar-top">
             <div>
                 <h1>Diya Rastogi</h1>
@@ -687,6 +703,17 @@
     </main>
 
     <script>
+        // Cursor Spotlight Effect
+        const spotlight = document.querySelector('.cursor-spotlight');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY + window.scrollY;
+            spotlight.style.left = mouseX + 'px';
+            spotlight.style.top = mouseY + 'px';
+        });
         // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
