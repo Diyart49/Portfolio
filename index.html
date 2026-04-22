@@ -1,773 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diya Rastogi - Engineer </title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background-color: #1a1a1a;
-            color: #ffffff;
-            line-height: 1.6;
-            font-size: 20px;
-            display: flex;
-            min-height: 100vh;
-        }
-
-        a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        /* Custom Cursor Spotlight */
-        .cursor-spotlight {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-    pointer-events: none;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: screen;
-        }
-
-        /* Fixed Sidebar */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 40%;
-            height: 100vh;
-            padding: 80px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: #1a1a1a;
-            z-index: 10;
-        }
-
-        .sidebar-top h1 {
-            font-size: 50px;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.2;
-            margin-bottom: 18px;
-            letter-spacing: -1px;
-        }
-
-        .sidebar-top .role {
-            font-size: 22px;
-            color: #ffffff;
-            margin-bottom: 32px;
-            font-weight: 500;
-        }
-
-        .sidebar-top .description {
-            font-size: 18px;
-            color: #ffffff;
-            line-height: 1.8;
-            margin-bottom: 60px;
-        }
-
-        nav ul {
-            list-style: none;
-        }
-
-        nav li {
-            margin-bottom: 24px;
-        }
-
-        nav a {
-            font-size: 16px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        nav a.active {
-            color: #ffffff;
-        }
-
-        nav a::before {
-            content: '';
-            width: 22px;
-            height: 1px;
-            background: #ffffff;
-            display: block;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::before {
-            width: 40px;
-        }
-
-        nav a.active::before {
-            width: 40px;
-        }
-
-        .sidebar-bottom {
-            display: flex;
-            gap: 20px;
-        }
-
-        .sidebar-bottom a {
-            font-size: 18px;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-bottom a:hover {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        /* Scrollable Main Content */
-        main {
-            margin-left: 40%;
-            width: 60%;
-            padding: 100px 100px 100px 60px;
-            overflow-y: auto;
-        }
-
-        section {
-            margin-bottom: 100px;
-        }
-
-        /* About Section */
-        .about-content {
-            font-size: 18px;
-            color: #ffffff;
-            line-height: 1.8;
-            max-width: 650px;
-            opacity: 0;
-            animation: slideInUp 0.6s ease-out forwards;
-            animation-delay: 0.1s;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content p {
-            margin-bottom: 18px;
-        }
-
-        .about-content a {
-            color: #ffffff;
-        }
-
-        /* Experience Section */
-        .exp-item {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-            align-items: flex-start;
-            opacity: 0;
-            animation: slideInUp 0.6s ease-out forwards;
-        }
-
-        .exp-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .exp-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .exp-item:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .exp-date {
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .exp-content h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .exp-content h3 a {
-            color: #ffffff;
-        }
-
-        .exp-role {
-            font-size: 17px;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .exp-sub-role {
-            font-size: 14px;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-
-        .exp-description {
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .exp-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .tech-tag {
-            font-size: 12px;
-            color: #ffffff;
-            background: rgba(100, 255, 218, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            font-weight: 500;
-        }
-
-        /* Projects Section */
-        .project-item {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-            align-items: flex-start;
-            opacity: 0;
-            animation: slideInUp 0.6s ease-out forwards;
-        }
-
-        .project-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .project-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .project-item:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .project-emoji {
-            font-size: 40px;
-            display: flex;
-            align-items: center;
-        }
-
-        .project-date {
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .project-content h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-
-        .project-content p {
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 16px;
-        }
-
-        .project-links a {
-            font-size: 12px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .project-links a::before {
-            content: '↗';
-            font-size: 12px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .project-tech span {
-            font-size: 12px;
-            color: #ffffff;
-            background: rgba(100, 255, 218, 0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(100, 255, 218, 0.3);
-            font-weight: 500;
-        }
-
-        /* Writing Section */
-        .writing-item {
-            display: grid;
-            grid-template-columns: 150px 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-            align-items: flex-start;
-            opacity: 0;
-            animation: slideInUp 0.6s ease-out forwards;
-        }
-
-        .writing-item:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .writing-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .writing-emoji {
-            font-size: 40px;
-            display: flex;
-            align-items: center;
-        }
-
-        .writing-date {
-            font-size: 14px;
-            color: #ffffff;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .writing-content h3 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-
-        .writing-content a {
-            color: #ffffff;
-        }
-
-        .writing-content p {
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            color: #ffffff;
-            font-size: 14px;
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            padding-top: 40px;
-            margin-top: 80px;
-            line-height: 1.8;
-        }
-
-        footer a {
-            color: #ffffff;
-        }
-
-        footer p {
-            margin-bottom: 8px;
-        }
-        
-
-        /* Animations */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            body {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding: 40px;
-                flex-direction: row;
-                justify-content: flex-start;
-                gap: 40px;
-                border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-                margin-bottom: 0;
-                align-items: flex-start;
-            }
-
-            main {
-                margin-left: 0;
-                width: 100%;
-                padding: 40px;
-            }
-
-            .sidebar-top h1 {
-                font-size: 36px;
-            }
-
-            nav ul {
-                display: flex;
-                gap: 30px;
-                margin-bottom: 0;
-            }
-
-            nav li {
-                margin-bottom: 0;
-            }
-
-            .sidebar-bottom {
-                position: absolute;
-                right: 40px;
-                top: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                flex-direction: column;
-                gap: 20px;
-                padding: 30px 20px;
-                position: relative;
-                margin-bottom: 0;
-                width: 100%;
-            }
-
-            .sidebar-top h1 {
-                font-size: 32px;
-                margin-bottom: 12px;
-            }
-
-            .sidebar-top .role {
-                font-size: 16px;
-                margin-bottom: 20px;
-            }
-
-            .sidebar-top .description {
-                margin-bottom: 20px;
-            }
-
-            nav ul {
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-
-            .sidebar-bottom {
-                position: relative;
-                right: auto;
-                top: auto;
-            }
-
-            main {
-                margin-left: 0;
-                width: 100%;
-                padding: 30px 20px;
-            }
-
-            .exp-item {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .project-item {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .writing-item {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .project-emoji,
-            .writing-emoji {
-                font-size: 32px;
-            }
-        }
-
-        /* Hide animations on initial page load */
-        .about-content.visible,
-        .exp-item.visible,
-        .project-item.visible,
-        .writing-item.visible {
-            animation: slideInUp 0.6s ease-out forwards;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diya Rastogi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F5F1;
+      --ink: #1C1C1C;
+      --muted: #6B6762;
+      --accent: #B85C38;
+      --rule: #D8D4CC;
+      --tag-bg: #EEEBE5;
+      --tag-text: #4A4744;
+      --max: 640px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      padding: 64px 24px 120px;
+      max-width: var(--max);
+      margin: 0 auto;
+      /* subtle paper grain */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── HEADER ── */
+    header { margin-bottom: 56px; }
+
+    .name {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+      border-bottom: 1px solid transparent;
+    }
+    nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* ── SECTIONS ── */
+    section { margin-bottom: 52px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 28px;
+    }
+
+    p { margin-bottom: 14px; color: #3A3835; }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s, color 0.2s;
+    }
+    a:hover {
+      color: var(--accent);
+      text-decoration-color: var(--accent);
+    }
+
+    /* ── EXPERIENCE / PROJECT ENTRIES ── */
+    .entry { margin-bottom: 36px; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .entry-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+    }
+    .entry-title a { text-decoration: none; }
+    .entry-title a:hover { color: var(--accent); }
+
+    .entry-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .entry-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .entry-body { font-size: 14px; line-height: 1.7; color: #3A3835; margin-bottom: 10px; }
+
+    /* ── HIGHLIGHT BADGE (award) ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--accent);
+      background: rgba(184, 92, 56, 0.08);
+      border: 1px solid rgba(184, 92, 56, 0.2);
+      border-radius: 3px;
+      padding: 2px 8px;
+      margin-bottom: 8px;
+    }
+    .badge::before { content: '↳'; font-size: 10px; }
+
+    /* ── TAGS ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 300;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 2px 8px;
+      border-radius: 2px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── WRITING ── */
+    .writing-item { margin-bottom: 24px; }
+
+    .writing-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 3px;
+    }
+
+    .writing-desc { font-size: 13.5px; color: #3A3835; margin-bottom: 4px; }
+
+    .writing-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry { margin-bottom: 24px; }
+    .edu-entry:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      font-size: 12.5px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a { color: var(--muted); }
+
+    /* ── LINKS ROW ── */
+    .links-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .links-row a {
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+    .links-row a:hover { color: var(--accent); }
+
+    @media (max-width: 480px) {
+      body { padding: 40px 18px 80px; }
+      .entry-meta { flex-direction: column; gap: 2px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="cursor-spotlight"></div>
-    
-    <!-- Fixed Sidebar -->
-    <aside class="sidebar">
-        
-        <div class="sidebar-top">
-            <div>
-                <h1>Diya Rastogi</h1>
-                <div class="role">Engineer</div>
-                <p class="description">
-                    I develop advanced machine learning systems grounded in rigorous research and real-world application.
-                </p>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#writing">Writing</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="sidebar-bottom">
-            <a href="https://github.com/Diyart49" target="_blank" title="GitHub">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-            </a>
-            <a href="https://www.linkedin.com/in/diya-rastogi-370806252" target="_blank" title="LinkedIn">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
-                    <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-            </a>
-        </div>
-    </aside>
 
-    <!-- Scrollable Main Content -->
-    <main>
-        <!-- About Section -->
-        <section id="about">
-            <div class="about-content">
-                <p>
-                    I'm a Junior Research Fellow (JRF) at <a href="https://www.iitd.ac.in/" target="_blank">Indian Institute of Technology Delhi</a> on an <a href="https://www.icmr.gov.in/" target="_blank">ICMR</a> research project in collaboration with <a href="https://www.aiims.edu/" target="_blank">AIIMS Delhi</a>. My work centers around lung nodule detection and sarcoma metastasis classification using radiomics, advanced ML models and explainability techniques like SHAP.
-                </p>
-                <p>
-                    With hands-on experience in building end-to-end ML pipelines, I specialise in data preprocessing, feature engineering, SMOTE for imbalance handling, cross-validation, hyperparameter tuning and model optimisation. I work extensively with classification models including Random Forest, Decision Trees and other ensemble methods, ensuring both performance and interpretability in high-stakes medical applications.
-                </p>
-                <p>
-                    Beyond research, I have authored research papers, built healthcare-focused applications like CardioCare and actively contributed to leadership roles at my university. My interests lie in AI research, data science and building scalable ML systems for real-world impact.
-                </p>
-            </div>
-        </section>
+  <!-- HEADER -->
+  <header>
+    <h1 class="name">Diya Rastogi</h1>
+    <p class="role">ML Researcher &amp; Data Scientist</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#education">Education</a>
+    </nav>
+  </header>
 
-        <!-- Experience Section -->
-        <section id="experience">
-            <div class="exp-item">
-                <div class="exp-date">2025 — Present</div>
-                <div class="exp-content">
-                    <h3><a href="https://www.iitd.ac.in/" target="_blank">Junior Research Fellow · IIT Delhi</a></h3>
-                    <div class="exp-role">Indian Institute of Technology Delhi</div>
-                    <p class="exp-description">
-                        Working on ICMR-funded project in collaboration with AIIMS Delhi. Developing ML classification pipelines for lung nodule detection and sarcoma metastasis classification with explainability analysis.
-                    </p>
-                    <div class="exp-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">SHAP</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">NumPy</span>
-                        <span class="tech-tag">Radiomics</span>
-                        <span class="tech-tag">Machine Learning</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <hr>
+    <p>
+      I'm a Junior Research Fellow at <a href="https://www.iitd.ac.in/" target="_blank">IIT Delhi</a>, working on an <a href="https://www.icmr.gov.in/" target="_blank">ICMR</a>-funded project in collaboration with <a href="https://www.aiims.edu/" target="_blank">AIIMS Delhi</a>. My work focuses on CT-based radiomics for early-stage lung metastasis classification in sarcoma patients — from raw DICOM data to interpretable, clinically-grounded ML pipelines.
+    </p>
+    <p>
+      I build end-to-end systems: feature extraction with PyRadiomics, ICC-based filtering, nested cross-validation, ensemble classifiers, calibration, and SHAP-based explainability. I care about pipelines that hold up under scrutiny — both statistical and clinical.
+    </p>
+    <p>
+      Outside the lab, I've shipped a deployed heart disease risk app and written on prediabetes prediction. I'm finishing my B.Tech in CSE at Bennett University and actively looking for DS/ML and Data Engineering roles in Delhi NCR.
+    </p>
+    <div class="links-row">
+      <a href="https://github.com/diyart49" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        github.com/diyart49
+      </a>
+      <a href="https://linkedin.com/in/rastogidiya" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zm2-5a2 2 0 0 1 0 4 2 2 0 0 1 0-4"/></svg>
+        linkedin.com/in/rastogidiya
+      </a>
+    </div>
+  </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <div class="project-item">
-                <div class="project-date">OCT 2023 — MAY 2024</div>
-                <div class="project-content">
-                    <h3>CardioCare – Heart Health Prediction</h3>
-                    <p>
-                        Developed a machine learning-based application to predict heart disease risk based on clinical parameters. Focused on model optimization and user-friendly deployment using Flask.
-                    </p>
-                    <div class="project-links">
-                        <a href="https://github.com/Diyart49/Heart-Disease-Prediction-using-Machine-Learning" target="_blank">GitHub</a>
-                    </div>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>Scikit-learn</span>
-                        <span>Flask</span>
-                        <span>Pandas</span>
-                    </div>
-                </div>
-            </div>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+    <hr>
 
-            <div class="project-item">
-                <div class="project-date">AUG 2024 — JAN 2025</div>
-                <div class="project-content">
-                    <h3>Prediabetes Prediction ML Model</h3>
-                    <p>
-                        Authored a research paper on predicting prediabetes using machine learning models with optimized feature engineering and comprehensive evaluation metrics.
-                    </p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>Random Forest</span>
-                        <span>Logistic Regression</span>
-                        <span>Data Analysis</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-title"><a href="https://www.iitd.ac.in/" target="_blank">Junior Research Fellow · IIT Delhi</a></span>
+        <span class="entry-date">2025 — Present</span>
+      </div>
+      <p class="entry-sub">ICMR-funded project · Supervised by Dr. Amit Mehndiratta · In collaboration with AIIMS Delhi</p>
+      <div class="badge">2nd Place — AIIMS Annual Research Day 2026</div>
+      <p class="entry-body">
+        Building a CT-based radiomics pipeline for lung metastasis classification in sarcoma patients. Work spans DICOM preprocessing with SimpleITK, radiomic feature extraction (PyRadiomics), ICC-based feature selection, class imbalance handling, nested cross-validation, LightGBM and ensemble classifiers, MLflow experiment tracking, and SHAP explainability. Manuscript in preparation.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">PyRadiomics</span>
+        <span class="tag">SimpleITK</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">LightGBM</span>
+        <span class="tag">SHAP</span>
+        <span class="tag">MLflow</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span>
+      </div>
+    </div>
+  </section>
 
-        <!-- Writing Section -->
-        <section id="writing">
-            <div class="writing-item">
-                <div class="exp-date">2024</div>
-                <div class="writing-content">
-                    
-                    <h3>Research Paper: Prediabetes Prediction Using Machine Learning</h3>
-                    <p>
-                        Published research on optimized ML models for prediabetes prediction with feature engineering and comprehensive evaluation metrics.
-                    </p>
-                </div>
-            </div>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <hr>
 
-            <div class="writing-item">
-                <div class="exp-date">2025 — Present</div>
-                <div class="writing-content">
-                    <div class="writing-date">In Progress</div>
-                    <h3>Lung Nodule Detection & Sarcoma Classification</h3>
-                    <p>
-                        Ongoing research publication on advanced radiomics-based classification pipelines with explainability analysis for medical imaging.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-title">CardioCare — Heart Disease Risk Prediction</span>
+        <span class="entry-date">Oct 2023 — May 2024</span>
+      </div>
+      <p class="entry-body">
+        End-to-end ML application for heart disease risk assessment from clinical parameters. Built a classification pipeline with feature engineering and model optimization, deployed as a Flask REST API with a user-facing interface.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Pandas</span>
+      </div>
+      <div style="margin-top: 10px;">
+        <a href="https://github.com/Diyart49/Heart-Disease-Prediction-using-Machine-Learning" target="_blank" style="font-size: 13px;">View on GitHub →</a>
+      </div>
+    </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>Designed & built by <a href="#">Diya Rastogi</a>. Built with HTML & CSS, deployed with <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.</p>
-            <p>© 2025 Diya Rastogi. All rights reserved.</p>
-        </footer>
-    </main>
+    <div class="entry">
+      <div class="entry-meta">
+        <span class="entry-title">Prediabetes Prediction ML Model</span>
+        <span class="entry-date">Aug 2024 — Jan 2025</span>
+      </div>
+      <p class="entry-body">
+        Developed and evaluated ML models for early prediabetes detection, with emphasis on optimized feature engineering, class balance, and comprehensive evaluation metrics. Work led to a research paper submission.
+      </p>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">Logistic Regression</span>
+        <span class="tag">Feature Engineering</span>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Cursor Spotlight Effect
-        const spotlight = document.querySelector('.cursor-spotlight');
-        let mouseX = 0;
-        let mouseY = 0;
+  <!-- WRITING -->
+  <section id="writing">
+    <p class="section-label">Writing</p>
+    <hr>
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY + window.scrollY;
-            spotlight.style.left = mouseX + 'px';
-            spotlight.style.top = mouseY + 'px';
-        });
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        });
+    <div class="writing-item">
+      <p class="writing-title">Prediabetes Prediction Using Machine Learning</p>
+      <p class="writing-desc">Optimized ML models for early prediabetes detection — feature engineering, evaluation metrics, and clinical utility analysis.</p>
+      <span class="writing-status">2024 · Published</span>
+    </div>
 
-        // Observe all items that should animate on scroll
-        document.querySelectorAll('.about-content, .exp-item, .project-item, .writing-item').forEach(item => {
-            observer.observe(item);
-        });
+    <div class="writing-item">
+      <p class="writing-title">Radiomics-Based Lung Metastasis Classification in Sarcoma</p>
+      <p class="writing-desc">CT-based radiomic pipeline for early-stage metastasis detection — feature extraction, nested CV, ensemble models, and explainability. Work presented at AIIMS Annual Research Day 2026.</p>
+      <span class="writing-status">2025 — Present · In Progress</span>
+    </div>
+  </section>
 
-        // Scroll Spy - Highlight active nav link based on section in view
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('nav a');
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education</p>
+    <hr>
 
-        const scrollSpy = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Remove active class from all links
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    
-                    // Add active class to corresponding link
-                    const activeLink = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-                    if (activeLink) {
-                        activeLink.classList.add('active');
-                    }
-                }
-            });
-        }, {
-            threshold: 0.3,
-            rootMargin: '0px 0px -60% 0px'
-        });
+    <div class="edu-entry">
+      <div class="entry-meta">
+        <span class="entry-title">B.Tech, Computer Science &amp; Engineering</span>
+        <span class="entry-date">2022 — 2026</span>
+      </div>
+      <p class="entry-sub">Bennett University, Greater Noida</p>
+    </div>
+  </section>
 
-        sections.forEach(section => scrollSpy.observe(section));
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Diya Rastogi</span>
+    <span>Built with HTML &amp; CSS · <a href="https://pages.github.com/" target="_blank">GitHub Pages</a></span>
+  </footer>
 
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
