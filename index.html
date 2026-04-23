@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diya Rastogi - JRF</title>
+    <title>Diya Rastogi - ML Researcher</title>
     <style>
         * {
             margin: 0;
@@ -13,36 +13,73 @@
 
         html { scroll-behavior: smooth; }
 
+        /* ── THEME VARIABLES ── */
+        :root {
+            --bg:           #f0ece4;
+            --bg-grad1:     rgba(210, 200, 185, 0.35);
+            --bg-grad2:     rgba(195, 210, 200, 0.25);
+            --ink:          #1a1a1a;
+            --ink-mid:      #444;
+            --ink-muted:    #777;
+            --ink-faint:    #999;
+            --ink-rule:     rgba(0,0,0,0.08);
+            --ink-rule2:    rgba(0,0,0,0.1);
+            --tag-bg:       rgba(0,0,0,0.06);
+            --tag-border:   rgba(0,0,0,0.1);
+            --spotlight:    rgba(0,0,0,0.04);
+            --award-color:  #8a6500;
+            --award-bg:     rgba(180,130,0,0.08);
+            --award-border: rgba(180,130,0,0.22);
+        }
+
+        body.dark {
+            --bg:           #1a1a1a;
+            --bg-grad1:     rgba(40, 50, 45, 0.5);
+            --bg-grad2:     rgba(50, 40, 60, 0.35);
+            --ink:          #ffffff;
+            --ink-mid:      #cccccc;
+            --ink-muted:    #aaaaaa;
+            --ink-faint:    #666666;
+            --ink-rule:     rgba(255,255,255,0.08);
+            --ink-rule2:    rgba(255,255,255,0.1);
+            --tag-bg:       rgba(100,255,218,0.08);
+            --tag-border:   rgba(100,255,218,0.25);
+            --spotlight:    rgba(255,255,255,0.06);
+            --award-color:  #ffd700;
+            --award-bg:     rgba(255,215,0,0.08);
+            --award-border: rgba(255,215,0,0.25);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background-color:#94928e;
-            /* subtle linen texture */
+            background-color: var(--bg);
             background-image:
-                radial-gradient(ellipse at 20% 50%, rgba(210, 200, 185, 0.35) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(195, 210, 200, 0.25) 0%, transparent 55%),
+                radial-gradient(ellipse at 20% 50%, var(--bg-grad1) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, var(--bg-grad2) 0%, transparent 55%),
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
-            color: #1a1a1a;
+            color: var(--ink);
             line-height: 1.6;
             font-size: 20px;
             display: flex;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         a {
-            color: #1a1a1a;
+            color: var(--ink);
             text-decoration: none;
             transition: opacity 0.2s ease;
         }
 
         a:hover { opacity: 0.6; text-decoration: none; }
 
-        /* Cursor Spotlight — softer for light theme */
+        /* Cursor Spotlight */
         .cursor-spotlight {
             position: fixed;
             width: 320px;
             height: 320px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, var(--spotlight) 0%, rgba(0,0,0,0) 70%);
             pointer-events: none;
             z-index: 1;
             transform: translate(-50%, -50%);
@@ -65,7 +102,7 @@
         .sidebar-top h1 {
             font-size: 50px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--ink);
             line-height: 1.2;
             margin-bottom: 14px;
             letter-spacing: -1.5px;
@@ -73,14 +110,14 @@
 
         .sidebar-top .role {
             font-size: 18px;
-            color: #444;
+            color: var(--ink-mid);
             margin-bottom: 28px;
             font-weight: 500;
         }
 
         .sidebar-top .description {
             font-size: 16px;
-            color: #555;
+            color: var(--ink-muted);
             line-height: 1.8;
             margin-bottom: 56px;
         }
@@ -90,7 +127,7 @@
 
         nav a {
             font-size: 13px;
-            color: #888;
+            color: var(--ink-faint);
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -101,14 +138,14 @@
             cursor: pointer;
         }
 
-        nav a:hover { color: #1a1a1a; opacity: 1; }
-        nav a.active { color: #1a1a1a; }
+        nav a:hover { color: var(--ink); opacity: 1; }
+        nav a.active { color: var(--ink); }
 
         nav a::before {
             content: '';
             width: 20px;
             height: 1px;
-            background: #aaa;
+            background: var(--ink-muted);
             display: block;
             transition: width 0.25s ease, background 0.25s ease;
         }
@@ -116,12 +153,13 @@
         nav a:hover::before,
         nav a.active::before {
             width: 40px;
-            background: #1a1a1a;
+            background: var(--ink);
         }
 
         .sidebar-bottom {
             display: flex;
             gap: 18px;
+            align-items: center;
         }
 
         .sidebar-bottom a {
@@ -130,12 +168,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #888;
+            color: var(--ink-faint);
             transition: color 0.2s ease;
             opacity: 1;
         }
 
-        .sidebar-bottom a:hover { color: #1a1a1a; opacity: 1; }
+        .sidebar-bottom a:hover { color: var(--ink); opacity: 1; }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--ink-faint);
+            transition: color 0.2s ease;
+            padding: 0;
+        }
+
+        .theme-toggle:hover { color: var(--ink); }
+
+        .theme-toggle .icon-sun,
+        .theme-toggle .icon-moon { display: none; }
+
+        body:not(.dark) .theme-toggle .icon-sun { display: block; }
+        body.dark .theme-toggle .icon-moon { display: block; }
 
         /* ── MAIN ── */
         main {
@@ -168,16 +229,16 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #999;
+            color: var(--ink-faint);
             margin-bottom: 48px;
             padding-bottom: 16px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--ink-rule);
         }
 
         /* ── ABOUT ── */
         .about-content {
             font-size: 17px;
-            color: #333;
+            color: var(--ink-mid);
             line-height: 1.9;
             max-width: 620px;
             margin: 0 auto;
@@ -186,7 +247,7 @@
 
         .about-content p { margin-bottom: 20px; }
         .about-content p:last-child { margin-bottom: 0; }
-        .about-content a { color: #1a1a1a; font-weight: 500; }
+        .about-content a { color: var(--ink); font-weight: 500; }
 
         /* ── EXPERIENCE / ITEMS ── */
         .exp-item, .project-item, .writing-item, .edu-item {
@@ -206,7 +267,7 @@
 
         .exp-date, .project-date {
             font-size: 12px;
-            color: #999;
+            color: var(--ink-faint);
             font-weight: 600;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -216,21 +277,21 @@
         .exp-content h3, .project-content h3, .writing-content h3, .edu-content h3 {
             font-size: 18px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--ink);
             margin-bottom: 6px;
         }
 
-        .exp-content h3 a { color: #1a1a1a; font-weight: 700; }
+        .exp-content h3 a { color: var(--ink); font-weight: 700; }
 
         .exp-role {
             font-size: 14px;
-            color: #777;
+            color: var(--ink-muted);
             margin-bottom: 12px;
             font-style: italic;
         }
 
         .exp-description, .project-content p, .writing-content p, .edu-content p {
-            color: #444;
+            color: var(--ink-mid);
             font-size: 15px;
             line-height: 1.85;
             margin-bottom: 14px;
@@ -243,9 +304,9 @@
             gap: 6px;
             font-size: 11.5px;
             font-weight: 600;
-            color: #8a6500;
-            background: rgba(180, 130, 0, 0.08);
-            border: 1px solid rgba(180, 130, 0, 0.22);
+            color: var(--award-color);
+            background: var(--award-bg);
+            border: 1px solid var(--award-border);
             border-radius: 20px;
             padding: 4px 12px;
             margin-bottom: 12px;
@@ -262,11 +323,11 @@
 
         .tech-tag, .project-tech span {
             font-size: 11.5px;
-            color: #555;
-            background: rgba(0,0,0,0.06);
+            color: var(--ink-muted);
+            background: var(--tag-bg);
             padding: 4px 11px;
             border-radius: 20px;
-            border: 1px solid rgba(0,0,0,0.1);
+            border: 1px solid var(--tag-border);
             font-weight: 500;
         }
 
@@ -279,7 +340,7 @@
 
         .project-links a {
             font-size: 12px;
-            color: #555;
+            color: var(--ink-muted);
             font-weight: 600;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -290,12 +351,12 @@
         }
 
         .project-links a::before { content: '↗'; font-size: 12px; }
-        .project-links a:hover { color: #1a1a1a; opacity: 1; }
+        .project-links a:hover { color: var(--ink); opacity: 1; }
 
         /* Writing date sub-label */
         .writing-status {
             font-size: 11px;
-            color: #aaa;
+            color: var(--ink-faint);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-weight: 600;
@@ -304,15 +365,15 @@
 
         /* Footer */
         footer {
-            color: #aaa;
+            color: var(--ink-faint);
             font-size: 13px;
-            border-top: 1px solid rgba(0,0,0,0.08);
+            border-top: 1px solid var(--ink-rule);
             padding-top: 36px;
             margin-top: 80px;
             line-height: 1.8;
         }
 
-        footer a { color: #aaa; }
+        footer a { color: var(--ink-faint); }
         footer p { margin-bottom: 6px; }
 
         /* ── ANIMATIONS ── */
@@ -400,16 +461,33 @@
         </div>
         <div class="sidebar-bottom">
             <a href="https://github.com/Diyart49" target="_blank" title="GitHub">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/diya-rastogi-370806252" target="_blank" title="LinkedIn">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+            <a href="https://www.linkedin.com/in/rastogidiya" target="_blank" title="LinkedIn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
                     <circle cx="4" cy="4" r="2"></circle>
                 </svg>
             </a>
+            <a href="mailto:diya.rastogi@example.com" title="Email me">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+            </a>
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                <!-- Sun icon (shown in light mode) -->
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                </svg>
+                <!-- Moon icon (shown in dark mode) -->
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/>
+                </svg>
+            </button>
         </div>
     </aside>
 
@@ -591,6 +669,15 @@
         setTimeout(() => {
             document.getElementById('page-home').classList.add('visible');
         }, 50);
+        // ── Theme toggle
+        const themeBtn = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') document.body.classList.add('dark');
+
+        themeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
     </script>
 </body>
 </html>
