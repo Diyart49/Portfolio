@@ -5,15 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diya Rastogi - JRF IITD</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
-        /* ── THEME VARIABLES ── */
         :root {
             --bg:           #f0ece4;
             --bg-grad1:     rgba(210, 200, 185, 0.35);
@@ -65,19 +59,12 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        a {
-            color: var(--ink);
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-
+        a { color: var(--ink); text-decoration: none; transition: opacity 0.2s ease; }
         a:hover { opacity: 0.6; text-decoration: none; }
 
-        /* Cursor Spotlight */
         .cursor-spotlight {
             position: fixed;
-            width: 320px;
-            height: 320px;
+            width: 320px; height: 320px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--spotlight) 0%, rgba(0,0,0,0) 70%);
             pointer-events: none;
@@ -88,10 +75,8 @@
         /* ── SIDEBAR ── */
         .sidebar {
             position: fixed;
-            left: 0;
-            top: 0;
-            width: 40%;
-            height: 100vh;
+            left: 0; top: 0;
+            width: 40%; height: 100vh;
             padding: 80px;
             display: flex;
             flex-direction: column;
@@ -99,366 +84,91 @@
             z-index: 10;
         }
 
-        .sidebar-top h1 {
-            font-size: 50px;
-            font-weight: 700;
-            color: var(--ink);
-            line-height: 1.2;
-            margin-bottom: 14px;
-            letter-spacing: -1.5px;
-        }
-
-        .sidebar-top .role {
-            font-size: 18px;
-            color: var(--ink-mid);
-            margin-bottom: 28px;
-            font-weight: 500;
-        }
-
-        .sidebar-top .description {
-            font-size: 16px;
-            color: var(--ink-muted);
-            line-height: 1.8;
-            margin-bottom: 56px;
-        }
+        .sidebar-top h1 { font-size: 50px; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 14px; letter-spacing: -1.5px; }
+        .sidebar-top .role { font-size: 18px; color: var(--ink-mid); margin-bottom: 28px; font-weight: 500; }
+        .sidebar-top .description { font-size: 16px; color: var(--ink-muted); line-height: 1.8; margin-bottom: 56px; }
 
         nav ul { list-style: none; }
         nav li { margin-bottom: 20px; }
-
-        nav a {
-            font-size: 13px;
-            color: var(--ink-faint);
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
-
+        nav a { font-size: 13px; color: var(--ink-faint); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 12px; transition: all 0.25s ease; cursor: pointer; }
         nav a:hover { color: var(--ink); opacity: 1; }
         nav a.active { color: var(--ink); }
+        nav a::before { content: ''; width: 20px; height: 1px; background: var(--ink-muted); display: block; transition: width 0.25s ease, background 0.25s ease; }
+        nav a:hover::before, nav a.active::before { width: 40px; background: var(--ink); }
 
-        nav a::before {
-            content: '';
-            width: 20px;
-            height: 1px;
-            background: var(--ink-muted);
-            display: block;
-            transition: width 0.25s ease, background 0.25s ease;
-        }
-
-        nav a:hover::before,
-        nav a.active::before {
-            width: 40px;
-            background: var(--ink);
-        }
-
-        .sidebar-bottom {
-            display: flex;
-            gap: 18px;
-            align-items: center;
-        }
-
-        .sidebar-bottom a {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--ink-faint);
-            transition: color 0.2s ease;
-            opacity: 1;
-        }
-
+        .sidebar-bottom { display: flex; gap: 18px; align-items: center; }
+        .sidebar-bottom a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--ink-faint); transition: color 0.2s ease; opacity: 1; }
         .sidebar-bottom a:hover { color: var(--ink); opacity: 1; }
 
-        /* Theme toggle button */
-        .theme-toggle {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--ink-faint);
-            transition: color 0.2s ease;
-            padding: 0;
-        }
-
+        .theme-toggle { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--ink-faint); transition: color 0.2s ease; padding: 0; }
         .theme-toggle:hover { color: var(--ink); }
-
-        .theme-toggle .icon-sun,
-        .theme-toggle .icon-moon { display: none; }
-
+        .theme-toggle .icon-sun, .theme-toggle .icon-moon { display: none; }
         body:not(.dark) .theme-toggle .icon-sun { display: block; }
         body.dark .theme-toggle .icon-moon { display: block; }
 
         /* ── MAIN ── */
-        main {
-            margin-left: 40%;
-            width: 60%;
-            padding: 100px 100px 100px 60px;
-            min-height: 100vh;
-        }
+        main { margin-left: 40%; width: 60%; padding: 100px 100px 100px 60px; min-height: 100vh; }
 
-        /* ── PAGES (tab system) ── */
-        .page {
-            display: none;
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
+        .page { display: none; opacity: 0; transform: translateY(16px); transition: opacity 0.35s ease, transform 0.35s ease; }
+        .page.active { display: block; }
+        .page.visible { opacity: 1; transform: translateY(0); }
 
-        .page.active {
-            display: block;
-        }
+        .page-header { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 48px; padding-bottom: 16px; border-bottom: 1px solid var(--ink-rule); }
 
-        .page.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ── PAGE HEADER (shown on non-home pages) ── */
-        .page-header {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--ink-faint);
-            margin-bottom: 48px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--ink-rule);
-        }
-
-        /* ── ABOUT ── */
-        .about-content {
-            font-size: 17px;
-            color: var(--ink-mid);
-            line-height: 1.9;
-            max-width: 620px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
+        .about-content { font-size: 17px; color: var(--ink-mid); line-height: 1.9; max-width: 620px; margin: 0 auto; text-align: center; }
         .about-content p { margin-bottom: 20px; }
         .about-content p:last-child { margin-bottom: 0; }
         .about-content a { color: var(--ink); font-weight: 500; }
 
-        /* ── EXPERIENCE / ITEMS ── */
-        .exp-item, .project-item, .writing-item, .edu-item {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 36px;
-            margin-bottom: 56px;
-            align-items: flex-start;
-        }
+        .exp-item, .project-item, .writing-item, .edu-item { display: grid; grid-template-columns: 140px 1fr; gap: 36px; margin-bottom: 56px; align-items: flex-start; }
+        .exp-item:last-child, .project-item:last-child, .writing-item:last-child, .edu-item:last-child { margin-bottom: 0; }
 
-        .exp-item:last-child,
-        .project-item:last-child,
-        .writing-item:last-child,
-        .edu-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .exp-date, .project-date {
-            font-size: 12px;
-            color: var(--ink-faint);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            padding-top: 4px;
-        }
-
-        .exp-content h3, .project-content h3, .writing-content h3, .edu-content h3 {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 6px;
-        }
-
+        .exp-date, .project-date { font-size: 12px; color: var(--ink-faint); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; padding-top: 4px; }
+        .exp-content h3, .project-content h3, .writing-content h3, .edu-content h3 { font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
         .exp-content h3 a { color: var(--ink); font-weight: 700; }
+        .exp-role { font-size: 14px; color: var(--ink-muted); margin-bottom: 12px; font-style: italic; }
+        .exp-description, .project-content p, .writing-content p, .edu-content p { color: var(--ink-mid); font-size: 15px; line-height: 1.85; margin-bottom: 14px; }
 
-        .exp-role {
-            font-size: 14px;
-            color: var(--ink-muted);
-            margin-bottom: 12px;
-            font-style: italic;
-        }
+        .award-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: var(--award-color); background: var(--award-bg); border: 1px solid var(--award-border); border-radius: 20px; padding: 4px 12px; margin-bottom: 12px; letter-spacing: 0.2px; }
 
-        .exp-description, .project-content p, .writing-content p, .edu-content p {
-            color: var(--ink-mid);
-            font-size: 15px;
-            line-height: 1.85;
-            margin-bottom: 14px;
-        }
+        .exp-tech, .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .tech-tag, .project-tech span { font-size: 11.5px; color: var(--ink-muted); background: var(--tag-bg); padding: 4px 11px; border-radius: 20px; border: 1px solid var(--tag-border); font-weight: 500; }
 
-        /* Award badge */
-        .award-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 11.5px;
-            font-weight: 600;
-            color: var(--award-color);
-            background: var(--award-bg);
-            border: 1px solid var(--award-border);
-            border-radius: 20px;
-            padding: 4px 12px;
-            margin-bottom: 12px;
-            letter-spacing: 0.2px;
-        }
-
-        /* Tech tags */
-        .exp-tech, .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .tech-tag, .project-tech span {
-            font-size: 11.5px;
-            color: var(--ink-muted);
-            background: var(--tag-bg);
-            padding: 4px 11px;
-            border-radius: 20px;
-            border: 1px solid var(--tag-border);
-            font-weight: 500;
-        }
-
-        /* Project links */
-        .project-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 14px;
-        }
-
-        .project-links a {
-            font-size: 12px;
-            color: var(--ink-muted);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            opacity: 1;
-        }
-
+        .project-links { display: flex; gap: 20px; margin-bottom: 14px; }
+        .project-links a { font-size: 12px; color: var(--ink-muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; display: flex; align-items: center; gap: 5px; opacity: 1; }
         .project-links a::before { content: '↗'; font-size: 12px; }
         .project-links a:hover { color: var(--ink); opacity: 1; }
 
-        /* Writing date sub-label */
-        .writing-status {
-            font-size: 11px;
-            color: var(--ink-faint);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
+        .writing-status { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 6px; }
 
-        /* Footer */
-        footer {
-            color: var(--ink-faint);
-            font-size: 13px;
-            border-top: 1px solid var(--ink-rule);
-            padding-top: 36px;
-            margin-top: 80px;
-            line-height: 1.8;
-        }
-
+        footer { color: var(--ink-faint); font-size: 13px; border-top: 1px solid var(--ink-rule); padding-top: 36px; margin-top: 80px; line-height: 1.8; }
         footer a { color: var(--ink-faint); }
         footer p { margin-bottom: 6px; }
 
         main, .sidebar { transition: opacity 0.3s ease; }
 
-        /* ── SPLIT SCREEN HOME ── */
+        /* ── SPLIT SCREEN ── */
         .split-screen {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
             z-index: 100;
             transition: opacity 0.4s ease;
             overflow: hidden;
         }
+        .split-screen.hidden { opacity: 0; pointer-events: none; }
 
-        .split-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* top nav — floats over both halves */
-        .split-nav {
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 48px;
-            z-index: 103;
-        }
-
-        .split-nav-name {
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #C8A882;
-        }
-
-        .split-nav-skip {
-            font-size: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #A08060;
-            cursor: pointer;
-            background: none;
-            border: none;
-            transition: color 0.2s;
-        }
-
+        .split-nav { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; z-index: 103; }
+        .split-nav-name { font-size: 14px; font-weight: 700; letter-spacing: 0.5px; color: #C8A882; }
+        .split-nav-skip { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #A08060; cursor: pointer; background: none; border: none; transition: color 0.2s; }
         .split-nav-skip:hover { color: #E8C89A; }
 
-        /* main split area */
-        .split-body {
-            flex: 1;
-            display: flex;
-            align-items: stretch;
-            position: relative;
-        }
+        .split-body { flex: 1; display: flex; align-items: stretch; position: relative; }
 
-        .split-half {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            transition: flex 0.6s cubic-bezier(0.77, 0, 0.175, 1);
-            position: relative;
-            overflow: hidden;
-        }
+        .split-half { flex: 1; display: flex; align-items: center; cursor: pointer; transition: flex 0.6s cubic-bezier(0.77, 0, 0.175, 1); position: relative; overflow: hidden; }
+        .split-half.researcher { background: #1C0F0A; justify-content: flex-start; padding-left: clamp(36px, 8vw, 110px); }
+        .split-half.engineer   { background: #F5EDD8; justify-content: flex-end;  padding-right: clamp(36px, 8vw, 110px); }
 
-        /* Left: deep espresso */
-        .split-half.researcher {
-            background: #1C0F0A;
-            justify-content: flex-start;
-            padding-left: clamp(36px, 8vw, 110px);
-        }
-
-        /* Right: warm parchment */
-        .split-half.engineer {
-            background: #F5EDD8;
-            justify-content: flex-end;
-            padding-right: clamp(36px, 8vw, 110px);
-        }
-
-        /* hover expand */
         .split-body:has(.researcher:hover) .split-half.researcher { flex: 1.65; }
         .split-body:has(.researcher:hover) .split-half.engineer   { flex: 0.35; }
         .split-body:has(.engineer:hover)   .split-half.engineer   { flex: 1.65; }
@@ -468,134 +178,45 @@
         .split-half.researcher .split-content { text-align: left; }
         .split-half.engineer   .split-content { text-align: right; }
 
-        /* labels */
-        .split-label {
-            font-weight: 800;
-            line-height: 1;
-            margin-bottom: 20px;
-            transition: opacity 0.3s ease;
-        }
-
-        .split-half.researcher .split-label {
-            font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-            letter-spacing: -3px;
-            font-style: italic;
-            color: #E8C8A0;
-        }
-
-        .split-half.engineer .split-label {
-            font-size: clamp(2.2rem, 4.5vw, 4.5rem);
-            letter-spacing: -1px;
-            font-family: 'Courier New', monospace;
-            color: #3C1F0C;
-        }
-
+        .split-label { font-weight: 800; line-height: 1; margin-bottom: 20px; transition: opacity 0.3s ease; }
+        .split-half.researcher .split-label { font-size: clamp(2.8rem, 5.5vw, 5.5rem); letter-spacing: -3px; font-style: italic; color: #E8C8A0; }
+        .split-half.engineer   .split-label { font-size: clamp(2.2rem, 4.5vw, 4.5rem); letter-spacing: -1px; font-family: 'Courier New', monospace; color: #3C1F0C; }
         .split-half.researcher:hover .split-label { color: #F5DFB8; }
         .split-half.engineer:hover   .split-label { color: #1C0A02; }
 
-        /* descriptions */
-        .split-desc {
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
+        .split-desc { font-size: 15px; line-height: 1.8; }
         .split-half.researcher .split-desc { color: #7A5038; }
         .split-half.engineer   .split-desc { color: #A07850; }
-
         .split-half.researcher:hover .split-desc { color: #C49060; }
         .split-half.engineer:hover   .split-desc { color: #6B3C18; }
 
-        /* CTAs */
-        .split-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-top: 24px;
-            opacity: 0;
-            transform: translateY(6px);
-            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s, color 0.2s;
-            pointer-events: all;
-            cursor: pointer;
-            background: none;
-            border: none;
-        }
-
+        .split-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 24px; opacity: 0; transform: translateY(6px); transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s, color 0.2s; pointer-events: all; cursor: pointer; background: none; border: none; }
         .split-cta::after { content: ' →'; }
         .split-half:hover .split-cta { opacity: 1; transform: translateY(0); }
-
         .split-half.researcher .split-cta { color: #7A5038; }
         .split-half.researcher:hover .split-cta { color: #D4906A; }
         .split-half.engineer   .split-cta { color: #A07850; }
         .split-half.engineer:hover   .split-cta { color: #3C1F0C; }
 
-        /* vertical rule */
-        .split-divider {
-            position: absolute;
-            left: 50%;
-            top: 0; bottom: 0;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, #8C5A3A60, #8C5A3A90, #8C5A3A60, transparent);
-            transform: translateX(-50%);
-            z-index: 101;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
+        .split-divider { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(to bottom, transparent, #8C5A3A60, #8C5A3A90, #8C5A3A60, transparent); transform: translateX(-50%); z-index: 101; pointer-events: none; transition: opacity 0.3s ease; }
         .split-body:hover .split-divider { opacity: 0; }
 
         /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .page.visible .exp-item:nth-child(1),
-        .page.visible .project-item:nth-child(1),
-        .page.visible .writing-item:nth-child(1),
-        .page.visible .edu-item:nth-child(1),
-        .page.visible .about-content {
-            animation: fadeUp 0.4s ease forwards;
-            animation-delay: 0.05s;
-        }
-
-        .page.visible .exp-item:nth-child(2),
-        .page.visible .project-item:nth-child(2),
-        .page.visible .writing-item:nth-child(2) {
-            animation: fadeUp 0.4s ease forwards;
-            animation-delay: 0.15s;
-        }
-
-        .page.visible .exp-item:nth-child(3),
-        .page.visible .project-item:nth-child(3) {
-            animation: fadeUp 0.4s ease forwards;
-            animation-delay: 0.25s;
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .page.visible .exp-item:nth-child(1), .page.visible .project-item:nth-child(1), .page.visible .writing-item:nth-child(1), .page.visible .edu-item:nth-child(1), .page.visible .about-content { animation: fadeUp 0.4s ease forwards; animation-delay: 0.05s; }
+        .page.visible .exp-item:nth-child(2), .page.visible .project-item:nth-child(2), .page.visible .writing-item:nth-child(2) { animation: fadeUp 0.4s ease forwards; animation-delay: 0.15s; }
+        .page.visible .exp-item:nth-child(3), .page.visible .project-item:nth-child(3) { animation: fadeUp 0.4s ease forwards; animation-delay: 0.25s; }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1200px) {
             body { flex-direction: column; }
-
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding: 40px;
-                border-bottom: 1px solid rgba(0,0,0,0.08);
-            }
-
+            .sidebar { position: relative; width: 100%; height: auto; padding: 40px; border-bottom: 1px solid rgba(0,0,0,0.08); }
             main { margin-left: 0; width: 100%; padding: 40px; }
             .sidebar-top h1 { font-size: 36px; }
-
             nav ul { display: flex; gap: 28px; flex-wrap: wrap; }
             nav li { margin-bottom: 0; }
-
             .sidebar-bottom { position: absolute; right: 40px; top: 40px; }
         }
-
         @media (max-width: 768px) {
             .sidebar { padding: 28px 20px; }
             .sidebar-top h1 { font-size: 30px; }
@@ -603,11 +224,7 @@
             .sidebar-top .description { margin-bottom: 20px; font-size: 14px; }
             .sidebar-bottom { position: relative; right: auto; top: auto; margin-top: 16px; }
             main { padding: 28px 20px; }
-
-            .exp-item, .project-item, .writing-item, .edu-item {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
+            .exp-item, .project-item, .writing-item, .edu-item { grid-template-columns: 1fr; gap: 10px; }
         }
     </style>
 </head>
@@ -632,92 +249,57 @@
         </div>
         <div class="sidebar-bottom">
             <a href="https://github.com/Diyart49" target="_blank" title="GitHub">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             </a>
             <a href="https://www.linkedin.com/in/diya-rastogi-370806252" target="_blank" title="LinkedIn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path>
-                    <circle cx="4" cy="4" r="2"></circle>
-                </svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg>
             </a>
             <a href="mailto:diyarastogi2004@gmail.com" title="Email me">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                </svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             </a>
             <button class="theme-toggle" id="backToSplit" title="Back to intro" style="margin-left: 4px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                </svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </button>
             <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
-                <!-- Sun icon (shown in light mode) -->
-                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="4"/>
-                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-                </svg>
-                <!-- Moon icon (shown in dark mode) -->
-                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/>
-                </svg>
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
             </button>
         </div>
     </aside>
 
     <!-- SPLIT SCREEN -->
     <div class="split-screen" id="splitScreen">
-
         <div class="split-nav">
             <span class="split-nav-name">Diya Rastogi</span>
             <button class="split-nav-skip" onclick="enterSite('home')">skip intro ↓</button>
         </div>
-
         <div class="split-body">
-
-            <!-- Left: Researcher -->
             <div class="split-half researcher" id="splitResearcher">
                 <div class="split-content">
                     <div class="split-label">researcher</div>
-                    <p class="split-desc">
-                        Junior Research Fellow at IIT Delhi. Working at the crossroads of Artificial Intelligence and Machine Learning and Medicine — where the bar for rigour is higher than most.
-                    </p>
+                    <p class="split-desc">Junior Research Fellow at IIT Delhi. Working at the crossroads of AI, Machine Learning and Medicine — where the bar for rigour is higher than most.</p>
                     <button class="split-cta" onclick="enterSite('experience')">See my research</button>
                 </div>
             </div>
-
-            <!-- Vertical rule -->
             <div class="split-divider"></div>
-
-            <!-- Right: Engineer -->
             <div class="split-half engineer" id="splitEngineer">
                 <div class="split-content">
                     <div class="split-label">&lt;engineer&gt;</div>
-                    <p class="split-desc">
-                        Builder of end-to-end pipelines, deployed apps, and systems designed to survive scrutiny. Every new problem is an invitation.
-                    </p>
+                    <p class="split-desc">Builder of end-to-end pipelines, deployed apps, and systems designed to survive scrutiny. Every new problem is an invitation.</p>
                     <button class="split-cta" onclick="enterSite('projects')">See my projects</button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Main content — tab pages -->
+    <!-- Main content -->
     <main id="mainContent" style="display:none;">
 
-        <!-- HOME / ABOUT -->
+        <!-- ABOUT -->
         <div class="page active" id="page-home">
             <div class="about-content">
-                <p>
-                    Exploring the intersection of computational precision and clinical insight. Building machine learning systems that turn complex, high-stakes data into decisions that can actually be trusted grounded in research, tested against reality.
-                </p>
-                <p>
-                    A Junior Research Fellow at <a href="https://www.iitd.ac.in/" target="_blank">IIT Delhi</a>, working at the crossroads of medicine and machine learning on an <a href="https://www.icmr.gov.in/" target="_blank">ICMR</a>-funded project with <a href="https://www.aiims.edu/" target="_blank">AIIMS Delhi</a>. I believe the best systems aren't just accurate they're interpretable, reproducible and built to survive scrutiny. Every failed experiment is a step forward, every new problem is an invitation.
-                </p>
+                <p>Exploring the intersection of computational precision and clinical insight. Building machine learning systems that turn complex, high-stakes data into decisions that can actually be trusted — grounded in research, tested against reality.</p>
+                <p>A Junior Research Fellow at <a href="https://www.iitd.ac.in/" target="_blank">IIT Delhi</a>, working at the crossroads of medicine and machine learning on an <a href="https://www.icmr.gov.in/" target="_blank">ICMR</a>-funded project with <a href="https://www.aiims.edu/" target="_blank">AIIMS Delhi</a>. I believe the best systems aren't just accurate — they're interpretable, reproducible, and built to survive scrutiny. Every failed experiment is a step forward, every new problem is an invitation.</p>
             </div>
         </div>
 
@@ -731,19 +313,9 @@
                     <h3><a href="https://www.iitd.ac.in/" target="_blank">Junior Research Fellow · IIT Delhi</a></h3>
                     <div class="exp-role">ICMR-funded · Supervised by Dr. Amit Mehndiratta · AIIMS Delhi collaboration</div>
                     <div class="award-badge">🏆 2nd Place — AIIMS Annual Research Day 2026</div>
-                    <p class="exp-description">
-                        Building an ML based toolbox for classification of lung metastasis in cancer patients. Work spans from DICOM preprocessing with SimpleITK, feature extraction via PyRadiomics, ICC-based feature selection, nested cross-validation, LightGBM and ensemble classifiers, MLflow experiment tracking to SHAP-based explainability. Manuscript in preparation.
-                    </p>
+                    <p class="exp-description">Building an ML based toolbox for classification of lung metastasis in cancer patients. Work spans from DICOM preprocessing with SimpleITK, feature extraction via PyRadiomics, ICC-based feature selection, nested cross-validation, LightGBM and ensemble classifiers, MLflow experiment tracking to SHAP-based explainability. Manuscript in preparation.</p>
                     <div class="exp-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">PyRadiomics</span>
-                        <span class="tech-tag">SimpleITK</span>
-                        <span class="tech-tag">scikit-learn</span>
-                        <span class="tech-tag">LightGBM</span>
-                        <span class="tech-tag">SHAP</span>
-                        <span class="tech-tag">MLflow</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Python</span><span class="tech-tag">PyRadiomics</span><span class="tech-tag">SimpleITK</span><span class="tech-tag">scikit-learn</span><span class="tech-tag">LightGBM</span><span class="tech-tag">SHAP</span><span class="tech-tag">MLflow</span><span class="tech-tag">Pandas</span><span class="tech-tag">NumPy</span>
                     </div>
                 </div>
             </div>
@@ -753,9 +325,7 @@
                 <div class="exp-content">
                     <h3>Placement Committee Member · Bennett University</h3>
                     <div class="exp-role">Career Services Center, Bennett University · Greater Noida</div>
-                    <p class="exp-description">
-                        Facilitated collaboration between students and companies, coordinating placement drives and pre-placement talks. Built and maintained relationships with industry partners to enhance placement opportunities, and prepared placement-related reports, presentations, and communications.
-                    </p>
+                    <p class="exp-description">Facilitated collaboration between students and companies, coordinating placement drives and pre-placement talks. Built and maintained relationships with industry partners to enhance placement opportunities, and prepared placement-related reports, presentations, and communications.</p>
                 </div>
             </div>
 
@@ -764,14 +334,9 @@
                 <div class="exp-content">
                     <h3>Design Head · National Service Scheme</h3>
                     <div class="exp-role">Bennett University · Greater Noida</div>
-                    <p class="exp-description">
-                        Led visual design across NSS initiatives — creating multimedia content using Final Cut Pro, Photoshop, and Canva. Collaborated with the team to brainstorm and implement creative campaigns, and assisted with HTML coding and website maintenance.
-                    </p>
+                    <p class="exp-description">Led visual design across NSS initiatives — creating multimedia content using Final Cut Pro, Photoshop, and Canva. Collaborated with the team to brainstorm and implement creative campaigns, and assisted with HTML coding and website maintenance.</p>
                     <div class="exp-tech">
-                        <span class="tech-tag">Final Cut Pro</span>
-                        <span class="tech-tag">Photoshop</span>
-                        <span class="tech-tag">Canva</span>
-                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Final Cut Pro</span><span class="tech-tag">Photoshop</span><span class="tech-tag">Canva</span><span class="tech-tag">HTML</span>
                     </div>
                 </div>
             </div>
@@ -781,9 +346,7 @@
                 <div class="exp-content">
                     <h3>Vice President · Alexis Club</h3>
                     <div class="exp-role">Social Welfare Club, Bennett University · Greater Noida</div>
-                    <p class="exp-description">
-                        Helped lead the university's social welfare club — organising community outreach events, managing volunteers, and driving initiatives aimed at student welfare and social impact on campus.
-                    </p>
+                    <p class="exp-description">Helped lead the university's social welfare club — organising community outreach events, managing volunteers, and driving initiatives aimed at student welfare and social impact on campus.</p>
                 </div>
             </div>
 
@@ -792,9 +355,7 @@
                 <div class="exp-content">
                     <h3>Design Head · Student Council</h3>
                     <div class="exp-role">Bennett University · Greater Noida</div>
-                    <p class="exp-description">
-                        Oversaw all design output for the Student Council — managing visual identity across events, campaigns, and communications. Worked closely with council leadership to ensure consistent and compelling creative direction.
-                    </p>
+                    <p class="exp-description">Oversaw all design output for the Student Council — managing visual identity across events, campaigns, and communications. Worked closely with council leadership to ensure consistent and compelling creative direction.</p>
                 </div>
             </div>
         </div>
@@ -802,26 +363,21 @@
         <!-- PROJECTS -->
         <div class="page" id="page-projects">
             <div class="page-header">Projects</div>
+
             <div class="project-item">
-    <div class="project-date">May 2026</div>
-    <div class="project-content">
-        <h3>TrendPulse – News Intelligence & Narrative Tracking Agent</h3>
-        <p>Agentic RAG pipeline that fetches live news, embeds articles using HuggingFace Transformers, clusters narratives with KMeans, and detects sentiment shifts and contradictions across sources using Groq LLaMA 3.3. LangChain tool-calling agent over a ChromaDB vector store with a conversational interface and real-time Plotly visualisations.</p>
-        <div class="project-links">
-            <a href="https://huggingface.co/spaces/Deeya01/trendpulse" target="_blank">Live Demo</a>
-            <a href="https://github.com/diyart49/trendpulse" target="_blank">GitHub</a>
-        </div>
-        <div class="project-tech">
-            <span>LangChain</span>
-            <span>HuggingFace Transformers</span>
-            <span>ChromaDB</span>
-            <span>Groq LLaMA 3.3</span>
-            <span>RAG</span>
-            <span>Gradio</span>
-            <span>Plotly</span>
-        </div>
-    </div>
-</div>
+                <div class="project-date">May 2026</div>
+                <div class="project-content">
+                    <h3>TrendPulse – News Intelligence & Narrative Tracking Agent</h3>
+                    <p>Agentic RAG pipeline that fetches live news, embeds articles using HuggingFace Transformers, clusters narratives with KMeans, and detects sentiment shifts and contradictions across sources using Groq LLaMA 3.3. LangChain tool-calling agent over a ChromaDB vector store with a conversational interface and real-time Plotly visualisations.</p>
+                    <div class="project-links">
+                        <a href="https://huggingface.co/spaces/Deeya01/trendpulse" target="_blank">Live Demo</a>
+                        <a href="https://github.com/diyart49/trendpulse" target="_blank">GitHub</a>
+                    </div>
+                    <div class="project-tech">
+                        <span>LangChain</span><span>HuggingFace</span><span>ChromaDB</span><span>Groq LLaMA 3.3</span><span>RAG</span><span>Gradio</span><span>Plotly</span>
+                    </div>
+                </div>
+            </div>
 
             <div class="project-item">
                 <div class="project-date">Oct 2023 — May 2024</div>
@@ -832,10 +388,7 @@
                         <a href="https://github.com/Diyart49/Heart-Disease-Prediction-using-Machine-Learning" target="_blank">GitHub</a>
                     </div>
                     <div class="project-tech">
-                        <span>Python</span>
-                        <span>scikit-learn</span>
-                        <span>Flask</span>
-                        <span>Pandas</span>
+                        <span>Python</span><span>scikit-learn</span><span>Flask</span><span>Pandas</span>
                     </div>
                 </div>
             </div>
@@ -846,31 +399,26 @@
                     <h3>Prediabetes Prediction ML Model</h3>
                     <p>ML models for early prediabetes detection with optimised feature engineering, class balance handling, and comprehensive evaluation metrics. Work led directly to a research paper.</p>
                     <div class="project-tech">
-                        <span>Python</span>
-                        <span>Random Forest</span>
-                        <span>Logistic Regression</span>
-                        <span>Feature Engineering</span>
+                        <span>Python</span><span>Random Forest</span><span>Logistic Regression</span><span>Feature Engineering</span>
                     </div>
                 </div>
             </div>
+
             <div class="project-item">
                 <div class="project-date">Oct 2022 — May 2023</div>
                 <div class="project-content">
                     <h3>Intellect – JEE Prep Quiz Platform</h3>
                     <p>Online quiz platform built for JEE preparation — science students could attempt timed topic-wise quizzes, with scores and performance data stored and tracked via MySQL. Built with Python and TKinter as the UI layer.</p>
                     <div class="project-tech">
-                        <span>Python</span>
-                        <span>TKinter</span>
-                        <span>MySQL</span>
+                        <span>Python</span><span>TKinter</span><span>MySQL</span>
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <!-- WRITING -->
         <div class="page" id="page-writing">
             <div class="page-header">Writing</div>
-
-            
 
             <div class="writing-item">
                 <div class="exp-date">Nov 2025 — Present</div>
@@ -880,8 +428,8 @@
                     <p>CT-based radiomic pipeline for early-stage metastasis detection — nested CV, ensemble models, calibration and explainability. Presented at AIIMS Annual Research Day 2026.</p>
                 </div>
             </div>
-        </div>
-        <div class="writing-item">
+
+            <div class="writing-item">
                 <div class="exp-date">August 2024</div>
                 <div class="writing-content">
                     <div class="writing-status">Published</div>
@@ -889,8 +437,8 @@
                     <p>Published research on optimised ML models for prediabetes prediction — feature engineering, evaluation metrics, and clinical utility analysis.</p>
                 </div>
             </div>
+        </div>
 
-        
         <!-- EDUCATION -->
         <div class="page" id="page-education">
             <div class="page-header">Education</div>
@@ -911,17 +459,15 @@
     </main>
 
     <script>
-        // ── Cursor spotlight
         const spotlight = document.querySelector('.cursor-spotlight');
         document.addEventListener('mousemove', (e) => {
             spotlight.style.left = e.clientX + 'px';
             spotlight.style.top  = e.clientY + 'px';
         });
 
-        // ── Split screen → site transition
-        const splitScreen  = document.getElementById('splitScreen');
-        const mainContent  = document.getElementById('mainContent');
-        const sidebar      = document.querySelector('.sidebar');
+        const splitScreen = document.getElementById('splitScreen');
+        const mainContent = document.getElementById('mainContent');
+        const sidebar     = document.querySelector('.sidebar');
 
         function enterSite(pageId) {
             splitScreen.classList.add('hidden');
@@ -934,7 +480,6 @@
             }, 420);
         }
 
-        // ── Back to split screen
         document.getElementById('backToSplit').addEventListener('click', () => {
             mainContent.style.opacity = '0';
             sidebar.style.opacity = '0';
@@ -949,10 +494,8 @@
             }, 300);
         });
 
-        // hide sidebar until split is dismissed
         sidebar.style.display = 'none';
 
-        // ── Tab navigation
         const navLinks = document.querySelectorAll('.nav-link');
         const pages    = document.querySelectorAll('.page');
 
@@ -961,39 +504,22 @@
                 p.classList.remove('visible');
                 if (p.classList.contains('active')) {
                     p.style.opacity = '0';
-                    setTimeout(() => {
-                        p.classList.remove('active');
-                        p.style.opacity = '';
-                    }, 200);
+                    setTimeout(() => { p.classList.remove('active'); p.style.opacity = ''; }, 200);
                 }
             });
-
             setTimeout(() => {
                 const target = document.getElementById('page-' + pageId);
-                if (target) {
-                    target.classList.add('active');
-                    void target.offsetWidth;
-                    target.classList.add('visible');
-                }
+                if (target) { target.classList.add('active'); void target.offsetWidth; target.classList.add('visible'); }
             }, 220);
-
-            navLinks.forEach(l => {
-                l.classList.toggle('active', l.dataset.page === pageId);
-            });
+            navLinks.forEach(l => l.classList.toggle('active', l.dataset.page === pageId));
         }
 
         navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(link.dataset.page);
-            });
+            link.addEventListener('click', (e) => { e.preventDefault(); showPage(link.dataset.page); });
         });
 
-        // ── Theme toggle
         const themeBtn = document.getElementById('themeToggle');
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') document.body.classList.add('dark');
-
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
         themeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
